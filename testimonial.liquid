@@ -1,0 +1,245 @@
+<div class="ts-main">
+  <div class="ts-logo">
+    <img src="{{ settings.logo |image_url }}">
+  </div>
+  <div>
+  {% if section.settings.heading != blank %}
+    <h1>{{ section.settings.heading }}</h1>
+  {% endif %}
+  {% if section.settings.sub-heading != blank %}
+    <h3>{{ section.settings.sub-heading }}</h3>
+  {% endif %}
+  </div>
+  <div class="ts-wrapper page-width">
+    <div class="ts-slider page-width">
+      {% for block in section.blocks %}
+        <div class="testimonial-slide">
+        {% if block.settings.testimonial != blank %}
+          <div class="testimonial-stars">
+            {% for i in (1..5) %}
+              <span><svg height="25px" width="25px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 280.124 280.124" xml:space="preserve" fill="#000000" transform="rotate(0)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" stroke="#CCCCCC" stroke-width="7.2832240000000015"></g><g id="SVGRepo_iconCarrier"> <g> <path style="fill:#F4B459;" d="M280.124,106.914l-92.059-6.598L140.057,4.441l-48.55,95.874L0,106.914l61.282,74.015 l-17.519,94.754l96.294-43.614l96.294,43.606l-17.799-94.754C218.553,180.919,280.124,106.914,280.124,106.914z"></path> <polygon style="fill:#F4B459;" points="236.352,275.683 218.553,180.92 280.071,106.975 280.071,106.905 188.065,100.315 140.057,4.441 140.057,232.068 "></polygon> </g> </g></svg></span>
+            {% endfor %}
+          </div>
+          <div class="testimonial-text">
+            {{ block.settings.testimonial }}
+          </div>
+        {% endif %}
+        {% if block.settings.customer != blank %}
+          <div class="testimonial-cust">
+          {{ block.settings.customer }}
+          </div>
+        {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+<style>
+  .ts-main{
+    margin-bottom:{{section.settings.margin-bottom}}px;
+    margin-top:{{section.settings.margin-top}}px;
+    padding-top:{{section.settings.padding-top}}px;
+    padding-bottom:{{section.settings.padding-bottom}}px;
+    background-color:{{section.settings.bg-color}};
+    position:relative;
+  }
+  .ts-logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+    top:-35px;
+    width:250px;
+    background:white;
+  }
+  .ts-logo img{
+    width:100%;
+  }
+  .ts-main h1{
+    margin:0;
+  }
+  .ts-main h3{
+    margin-top:10px;
+  }
+  .ts-main h1, .ts-main h3{
+    text-align:center;
+  }
+  .ts-slider{
+    border-top: 1px solid white;
+  }
+  .testimonial-slide{
+    margin-right:20px;
+    text-align:center;
+  }
+  .ts-main .slick-next:before{
+    display:none;
+  }
+  .ts-main .slick-prev:before{
+    display:none;
+  }
+  .ts-main .slick-prev, .ts-main .slick-next{
+    background:white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width:30px;
+    height:30px;
+    transition:scale 0.5s;
+  }
+  .ts-main .slick-prev:hover, .ts-main .slick-next:hover{
+    scale:1.1;
+    background:white; 
+  }
+  .testimonial-text{
+    font-size:14px;
+  }
+  .testimonial-text p{
+    margin-top:0;
+  }
+  .testimonial-stars{
+    margin-top:15px
+  }
+  .testimonial-stars span{
+    display:inline-block;
+  }
+  .testimonial-stars svg{
+    display:block;
+  }
+  @media(max-width:768px){
+    .ts-main .slick-next{
+      right:-9px;
+    }
+    .ts-main .slick-prev{
+      left:-9px;
+    }
+    .ts-main .slick-next , .ts-main .slick-prev{
+        width:25px;
+        height:25px;
+    }
+    .ts-main .slick-next svg , .ts-main .slick-prev svg{
+        width:12px;
+        height:12px;
+    }
+  }
+</style>
+
+<script>
+  $( document ).ready(function() {
+     $('.ts-slider').slick({
+    slidesToShow:3,
+    slidesToScroll:3,
+    arrows:true,
+    dots:false,
+    nextArrow:'<span class="slick-next slick-arrow"><svg height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-30.72 -30.72 573.44 573.44" xml:space="preserve" fill="#000000" transform="rotate(90)" stroke="#000000" stroke-width="20.48"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#000000;" d="M505.183,355.907L272.45,123.179c-4.363-4.364-10.283-6.816-16.455-6.816 c-6.173,0-12.093,2.453-16.457,6.817L6.817,355.908c-9.089,9.089-9.089,23.824,0,32.912c9.087,9.087,23.824,9.089,32.912,0 l216.266-216.27l216.277,216.27c4.544,4.544,10.501,6.816,16.457,6.816s11.913-2.271,16.457-6.817 C514.272,379.73,514.272,364.995,505.183,355.907z"></path> </g></svg></span>',
+    prevArrow:'<span class="slick-prev slick-arrow"><svg height="16px" width="16px" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="-30.72 -30.72 573.44 573.44" xml:space="preserve" fill="#000000" transform="rotate(270)" stroke="#000000" stroke-width="20.48"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path style="fill:#000000;" d="M505.183,355.907L272.45,123.179c-4.363-4.364-10.283-6.816-16.455-6.816 c-6.173,0-12.093,2.453-16.457,6.817L6.817,355.908c-9.089,9.089-9.089,23.824,0,32.912c9.087,9.087,23.824,9.089,32.912,0 l216.266-216.27l216.277,216.27c4.544,4.544,10.501,6.816,16.457,6.816s11.913-2.271,16.457-6.817 C514.272,379.73,514.272,364.995,505.183,355.907z"></path> </g></svg></span>',
+    responsive:[
+      {
+        breakpoint: 780,
+        settings: {
+          slidesToShow:2,
+          slidesToScroll:2,
+          }
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow:1,
+          slidesToScroll:1,
+          }
+      }
+    ]
+    
+  })
+});
+</script>
+{% schema %}
+  {
+    "name": "Testimonials Slider",
+    "settings": [
+      {
+        "type":"text",
+        "id":"heading",
+        "label":"Heading"
+      },
+      {
+        "type":"text",
+        "id":"sub-heading",
+        "label":"Sub-Heading"
+      },
+      {
+        "type":"color",
+        "id":"bg-color",
+        "label":"Background Color"
+      },
+      {
+        "type":"range",
+        "id":"margin-top",
+        "label":"Margin Top",
+        "min":0,
+        "max":200,
+        "step":2,
+        "default":0,
+        "unit":"px"
+      },
+      {
+        "type":"range",
+        "id":"margin-bottom",
+        "label":"Margin Bottom",
+        "min":0,
+        "max":200,
+        "step":2,
+        "default":0,
+        "unit":"px"
+      },
+      {
+        "type":"range",
+        "id":"padding-top",
+        "label":"Padding Top",
+        "min":0,
+        "max":200,
+        "step":2,
+        "default":0,
+        "unit":"px"
+      },
+      {
+        "type":"range",
+        "id":"padding-bottom",
+        "label":"Padding Bottom",
+        "min":0,
+        "max":200,
+        "step":2,
+        "default":0,
+        "unit":"px"
+      }
+    ],
+    "blocks":[
+      {
+        "type":"testimonial",
+        "name":"testimonial",
+        "settings":[
+          {
+            "type":"richtext",
+            "id":"testimonial",
+            "label":"Testimonial"
+          },
+          {
+            "type":"richtext",
+            "id":"customer",
+            "label":"Customer Name"
+          }
+        ]
+      }
+    ],
+    "presets":[
+      {
+        "name":"Testimonials Slider"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
